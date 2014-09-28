@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="stylesheet" type="text/css" href="./assets/css/default.css">
+
+		<title>GitHubMembers</title>
+		<script src="./app/app.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+		<script type="text/javascript">
+			jQuery( document ).ready(function( $ ) {
+				App.init();
+			});
+		</script>
+	</head>
+	<body id="body" role="application">
+		<header id="header">
+			<h1>GitHub Users</h1>
+		</header>
+		<div id="app-container">
+		</div><!--container-->
+
+
+<script id="users-template" type="text/x-handlebars-template"> 
+{{#with links}}
+	<ul class="links"> 
+	{{#if first}}
+		<a href="#" class="action-first" rel="{{first.rel}}">First</a>
+	{{/if}}
+	{{#if prev}}
+		<a href="#" class="action-prev" rel="{{prev.rel}}">Previous</a>
+	{{/if}}
+	{{#if next}}
+		<a href="#" class="action-next" rel="{{next.rel}}">Next</a>
+	{{/if}}
+	{{#if last}}
+		<a href="#" class="action-last" rel="{{last.rel}}">Last</a>
+	{{/if}}
+	</ul> 
+{{/with}}
+
+<ul class="users"> 
+	{{#users}} 
+	<li class="user" id="user-{{id}}"> 
+		<div class="avatar"><img src="{{avatar_url}}" alt="{{login}}"/></div> 
+		<div class="name">{{login}}</div>
+		<div class="actions">
+			<a href="#" class="action-followers" rel="{{id}}">Followers</a>
+		</div>
+	</li> 
+	{{/users}} 
+</ul> 
+</script>
+
+<script id="followers-template" type="text/x-handlebars-template"> 
+<ul class="followers"> 
+	{{#if followers}}
+		{{#followers}} 
+		<li class="follower" id="follower-{{id}}"> 
+			<div class="avatar"><img src="{{avatar_url}}" alt="{{login}}"/></div> 
+			<div class="name">{{login}}</div>
+		</li> 
+		{{/followers}} 
+	{{else}}
+		<li class="no-followers"><div>No followers found.</div></li>
+	{{/if}}
+</ul> 
+</script>
+
+	</body>
+</html>

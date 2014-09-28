@@ -1,0 +1,109 @@
+/* html5doctor.com Reset v1.6.1 - http://cssreset.com */
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+/* PAGE */ 
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #666;
+	font-weight: 300;
+	line-height: 1.625;
+	margin-top: 70px;
+}
+#header {
+	position: fixed;
+	width: 100%;
+	height: 60px;
+	top: 0px;
+	left: 0px;
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.95);
+	border-bottom: 1px solid #d5d5d5;
+	box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.2);
+	z-index: 1200;
+	border: none\9;
+}
+h1 {
+	display: inline-block;
+    box-sizing: border-box;
+	height: 100%;
+	background: #009FE3;
+    padding: 10px 10px;
+	font-size: 1.625em;
+    color: #000;
+}
+
+/* STRUCTURE */ 
+#app-container {
+	position: relative;
+	width: 960px;
+	min-height: 200px;
+	margin: 20px auto;
+	padding: 5px;
+}
+#app-container.loading:after {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	content: "";
+	background: rgba(255,255,255,0.9) url("../images/loading.gif") center top no-repeat;
+    background-size: 200px;
+}
+#app-container a {
+    color: #009FE3;
+    text-decoration: underline;
+}
+#app-container ul {
+	list-style: none;
+}
+#app-container a.loading:after {
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0px 6px;
+	background: url("../images/loading.gif") center center no-repeat;
+    background-size: contain;
+	vertical-align: middle;
+}
+
+.users .user:nth-child(odd) {
+    background: #F9F9F9;
+}
+.users .user {
+	box-sizing: content-box;
+	height: 103px;
+	padding: 6px 0px;
+	clear: both;
+	border-bottom: 1px dotted #d9dbdd;
+}
+.user:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.user > .name {
+	font-size: 130%;
+	font-weight: bold;
+}
+.user > .avatar img {
+	float: left;
+	width: 100px;
+	margin: 0px 6px;
+	border: 1px solid #666666;
+}
+
+.follower {
+	display: inline-block;
+	margin: 0px 6px;
+	font-size: 80%;
+}
+.follower .avatar {
+	text-align: center;
+}
+.follower .avatar img {
+	width: 35px;
+}
+
