@@ -18,6 +18,13 @@ var App = {
 
 		//$.support.cors = true;	// tell jQuery our environment supports Cross-Domain requests
 
+		// replace object references with the real jQuery objects
+		app.container = $(app.container);
+		
+		// replace template references with their compiled handlebars object
+		app.templates.users = Handlebars.compile($(app.templates.users).html());
+		app.templates.followers = Handlebars.compile($(app.templates.followers).html());
+
 		// load the first set of users		
 		app.loadPage();
 		
@@ -122,11 +129,10 @@ var App = {
 		data = newData;
 
 		// populate template
-		var source   = $(app.templates.users).html();
-		var template = Handlebars.compile(source);
+		var html   = app.templates.users(data);
 
 		// add to DOM
-		$(app.container).empty().append(template(data));
+		app.container.empty().append(html);
 
 		app.say("populateUsers: populated");
 	},
@@ -143,13 +149,12 @@ var App = {
 		data.followers = newData;
 
 		// populate template
-		var source   = $(app.templates.followers).html();
-		var template = Handlebars.compile(source);
+		var html   = app.templates.followers(data);
 
 		// add to DOM
-		$(template(data))
+		$(html)
 			.hide()
-			.appendTo($(app.container).find('#user-'+userId))
+			.appendTo(app.container.find('#user-'+userId))
 			.fadeIn();
 
 		app.say("populateFollowers: populated");
@@ -160,13 +165,13 @@ var App = {
 		var app = this;
 		
 		// click on Followers link
-		$(app.container).on("click", ".action-followers", function(event){
+		app.container.on("click", ".action-followers", function(event){
 			event.preventDefault();
 			app.clickFollowers($(event.currentTarget));
 		});
 
 		// click on Paging links
-		$(app.container).on("click", ".action-first, .action-prev, .action-next, .action-last", function(event){
+		app.container.on("click", ".action-first, .action-prev, .action-next, .action-last", function(event){
 			event.preventDefault();
 			var linkName = $(this).attr('rel');
 			app.loadPage(linkName);
@@ -239,7 +244,7 @@ var App = {
 	loadingStart: function($element){
 		///<summary> Stuff to do when loading starts for element </summary>
 		var app = this,
-			$element = $element || $(app.container);
+			$element = $element || app.container;
 			
 		$element.addClass('loading');
 	},
@@ -247,7 +252,7 @@ var App = {
 	loadingEnd: function($element){
 		///<summary> Stuff to do when loading ends for element </summary>
 		var app = this,
-			$element = $element || $(app.container);
+			$element = $element || app.container;
 			
 		$element.removeClass('loading');
 	},
